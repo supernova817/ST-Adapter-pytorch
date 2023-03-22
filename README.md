@@ -1,4 +1,4 @@
-# ST-Adapter for pytorch usage
+# pytorch usage for ST-Adapter
 ![image](https://user-images.githubusercontent.com/58262251/226808005-4b6b1339-3a90-4a12-91c8-481b556cea09.png)
 
 
