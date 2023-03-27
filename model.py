@@ -41,7 +41,11 @@ class VitModel(nn.Module):
         ~~~~
         self.block = nn.ModuleList(~~)
 
-        self.st_dapter = STAdapter(768, 384) # self.st_dapter = nn.ModuleList([ STAdapter(768, 384) for i in range(self.depth)])
+        # self.st_dapter = STAdapter(768, 384) # self.st_dapter = nn.ModuleList([ STAdapter(768, 384) for i in range(self.depth)])
+        self.st_dapter = nn.ModuleList([ 
+            STAdapter(768, 384)
+            for i in range(self.depth)
+        ])
 
         ~~~
     def forward(self, x):
