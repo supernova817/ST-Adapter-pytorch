@@ -27,7 +27,10 @@ class STAdapter(nn.Module):
     def forward(self, x):
         # input shape -> [T, N, in_channels]
         res_x = self.downscale(x) # [T, N, down_channels]
+        
+        # res_x = rearrange(res_x, 't n d -> d t n').unsqueeze(3).unsqueeze(0) # [1, down_channels, T, N, 1] some version
         res_x = rearrange(res_x, 't n d -> d t n').unsqueeze(3) # [down_channels, T, N, 1]
+        
         res_x = self.dw3dcnn(res_x) # [down_channels, T, N, 1]
         res_x = self.act_fun(rearrange(res_x.squeeze(), 'd t n -> t n d')) # [T, N, down_channels]
         x = x + self.upscale(res_x) # [T, N, in_channels]
